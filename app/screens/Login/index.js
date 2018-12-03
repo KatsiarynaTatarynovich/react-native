@@ -1,14 +1,5 @@
-import React, { PropTypes } from 'react';
-import {
-    StyleSheet, Text,
-} from 'react-native';
-import {
-    Container,
-    Header,
-    Title,
-    Button,
-    View,
-} from 'native-base';
+import React, {Component} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -23,14 +14,14 @@ const styles = StyleSheet.create({
     },
 });
 
-const Login = (props) => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Friday's shop</Text>
-            <Text>Welcome to React Native 2</Text>
-            <Text>Welcome to React Native 3</Text>
-        </View>
-    );
-};
+class Index extends Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>Friday's shop</Text>
+            </View>
+        );
+    }
+}
 
-export default Login;
+export default Index;
