@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 
-import Index from './screens/Login';
+import Login from './screens/Login';
+import Product from './screens/Product';
 
 export default class App extends Component {
   render() {
     return (
-      <Index />
+      <Product />
     );
   }
 }
