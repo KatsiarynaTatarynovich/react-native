@@ -1,62 +1,31 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TouchableHighlight } from 'react-native';
 
 import { iconImages } from './../../images';
 
 import { styles } from './styles';
 
 class Product extends Component {
-    state = {
-        inputTextEmail: 'email',
-        inputTextBox: 'Text box'
-    };
-
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Products</Text>
-                <View style={styles.productItem}>
-                    <View style={styles.productInfo}>
-                        <Image
-                            source={iconImages.emptyJamJar}
-                            style={styles.productImage}/>
-                        <Text style={styles.productTitle}>Product 1</Text>
-                    </View>
-                    <TouchableHighlight
-                        onPress={() => alert('OK')}
-                        underlayColor='#263852'
-                        style={styles.button}>
-                        <Text style={styles.buttonText}>login</Text>
-                    </TouchableHighlight>
+                <View style={styles.product}>
+                    <Image
+                        source={iconImages.emptyJamJar}
+                        style={styles.productImage}/>
+                    <Text style={styles.productTitle}>Product 1</Text>
+                    <Text style={styles.productInfo}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        nulla pariatur. Excepteur sint occaecat.
+                    </Text>
                 </View>
-                <View style={styles.productItem}>
-                    <View style={styles.productInfo}>
-                        <Image
-                            source={iconImages.flamingo}
-                            style={styles.productImage}/>
-                        <Text style={styles.productTitle}>Product 2</Text>
-                    </View>
-                    <TouchableHighlight
-                        onPress={() => alert('OK')}
-                        underlayColor='#263852'
-                        style={styles.button}>
-                        <Text style={styles.buttonText}>login</Text>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.productItem}>
-                    <View style={styles.productInfo}>
-                        <Image
-                            source={iconImages.groceryBag}
-                            style={styles.productImage}/>
-                        <Text style={styles.productTitle}>Product 3</Text>
-                    </View>
-                    <TouchableHighlight
-                        onPress={() => alert('OK')}
-                        underlayColor='#263852'
-                        style={styles.button}>
-                        <Text style={styles.buttonText}>login</Text>
-                    </TouchableHighlight>
-                </View>
+                <TouchableHighlight
+                    onPress={() => alert('OK')}
+                    underlayColor='#263852'
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>All Products</Text>
+                </TouchableHighlight>
             </View>
         );
     }

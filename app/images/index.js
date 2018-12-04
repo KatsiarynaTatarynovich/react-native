@@ -1,4 +1,5 @@
 const iconImages = {
+    arrowRight: require('../assets/icons/arrow-right.png'),
     coctailShot: require('../assets/icons/coctail-shot-48.png'),
     cookieMonster: require('../assets/icons/cookie-monster-48.png'),
     elf: require('../assets/icons/elf-48.png'),
