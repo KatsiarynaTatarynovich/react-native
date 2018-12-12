@@ -12,6 +12,8 @@ class Login extends Component {
     };
 
     render() {
+        const {navigate} = this.props.navigation;
+
         return (
             <View style={styles.container}>
                 <Image
@@ -29,7 +31,7 @@ class Login extends Component {
                     value={this.state.inputTextBox}
                     />
                 <TouchableHighlight
-                    onPress={() => alert('OK')}
+                    onPress={() => navigate('ProductList', {screen: 'ProductList'})}
                     underlayColor='#263852'
                     style={styles.button}>
                     <Text style={styles.buttonText}>login</Text>
