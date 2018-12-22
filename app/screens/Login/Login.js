@@ -11,6 +11,21 @@ class Login extends Component {
         inputTextBox: 'Text box'
     };
 
+    login = async() => {
+        return fetch('http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: 'test',
+                password: 'test123',
+            })
+        })
+            .then((response) => )
+    }
+
     render() {
         const {navigate} = this.props.navigation;
 
