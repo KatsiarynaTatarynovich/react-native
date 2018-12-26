@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontFamily: 'vinchHand',
     }
-});
+}),
+    buttonUnderlayColor = '#263852';
 
-export { styles };
+export { styles, buttonUnderlayColor };

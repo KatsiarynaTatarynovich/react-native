@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     }
-});
+}),
+    buttonUnderlayColor = 'transparent';
 
-export { styles };
+export { styles, buttonUnderlayColor };
