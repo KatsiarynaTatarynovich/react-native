@@ -15,15 +15,13 @@ class Product extends Component {
     render() {
         const {navigation} = this.props,
             title = navigation.getParam('title'),
-            image = navigation.getParam('image'),
+            id = navigation.getParam('id'),
             description = navigation.getParam('description');
 
         return (
             <View style={styles.container}>
                 <View style={styles.product}>
-                    <Image
-                        source={image}
-                        style={styles.productImage}/>
+                    <Text style={styles.productId}>{JSON.stringify(id)}</Text>
                     <Text style={styles.productTitle}>{JSON.stringify(title)}</Text>
                     <Text style={styles.productInfo}>{JSON.stringify(description)}</Text>
                 </View>
