@@ -11,10 +11,13 @@ class ProductListItem extends Component {
     };
 
     render() {
+        console.log(this.props.description);
         return (
             <View style={styles.productItem}>
                 <View style={styles.productInfo}>
-                    <Text style={styles.productId}>{this.props.id}</Text>
+                    <Image
+                        source={this.props.image}
+                        style={styles.productImage}/>
                     <Text style={styles.productTitle}>{this.props.title}</Text>
                 </View>
                 <TouchableHighlight
@@ -29,5 +32,10 @@ class ProductListItem extends Component {
         );
     }
 }
+
+ProductListItem.defaultProps = {
+    image: iconImages.emptyJamJar,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid, atque dicta dolores earum eius, eveniet expedita inventore mollitia natus nihil, numquam officiis possimus quae quo reiciendis saepe. Aliquam, necessitatibus.'
+};
 
 export default ProductListItem;

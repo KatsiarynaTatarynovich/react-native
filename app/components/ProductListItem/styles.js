@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
     },
-    productId: {
-        fontSize: 20,
-        color: '#76cdd8',
+    productImage: {
+        width: 35,
+        height: 35,
         marginRight: 15,
     },
     productTitle: {
