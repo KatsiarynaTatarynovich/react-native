@@ -9,9 +9,8 @@ import ProductList from './screens/ProductList';
 import OfflineNotice from './features/OfflineNotice';
 
 const AppNavigator  = createStackNavigator({
-    Login: {screen: Login},
+        ProductList: {screen: ProductList},
     Product: {screen: Product},
-    ProductList: {screen: ProductList}
 },
 {
     headerMode: 'none',

@@ -13,7 +13,8 @@ const iconImages = {
     notepad: require('../assets/icons/notepad++-48.png'),
     salami: require('../assets/icons/salami-48.png'),
     snitch: require('../assets/icons/snitch-48.png'),
-    tudorRose: require('../assets/icons/tudor-rose-48.png')
+    tudorRose: require('../assets/icons/tudor-rose-48.png'),
+    map: require('../assets/icons/map.png'),
 };
 
 export { iconImages };

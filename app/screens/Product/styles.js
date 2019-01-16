@@ -28,11 +28,12 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontFamily: 'vinchHand',
     },
-    productId: {
+    productImage: {
         position: 'absolute',
         top: 20,
         left: -30,
-        fontSize: 30,
+        width: 60,
+        height: 60,
     },
     button: {
         marginTop: 25,

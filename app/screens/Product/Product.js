@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableHighlight } from 'react-native';
+import MapView from 'react-native-maps';
 
 import { iconImages } from './../../images';
 
@@ -21,9 +22,19 @@ class Product extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.product}>
-                    <Text style={styles.productId}>{JSON.stringify(id)}</Text>
+                    <Image
+                        source={iconImages.map}
+                        style={styles.productImage}/>
                     <Text style={styles.productTitle}>{JSON.stringify(title)}</Text>
                     <Text style={styles.productInfo}>{JSON.stringify(description)}</Text>
+                    <MapView
+                        initialRegion={{
+                            latitude: 37.78825,
+                            longitude: -122.4324,
+                            latitudeDelta: 0.0922,
+                            longitudeDelta: 0.0421,
+                        }}
+                    />
                 </View>
                 <TouchableHighlight
                     onPress={this.redirect.bind(this)}

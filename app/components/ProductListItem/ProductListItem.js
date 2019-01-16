@@ -11,7 +11,6 @@ class ProductListItem extends Component {
     };
 
     render() {
-        console.log(this.props.description);
         return (
             <View style={styles.productItem}>
                 <View style={styles.productInfo}>
