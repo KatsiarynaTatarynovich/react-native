@@ -3,13 +3,47 @@ import { Text, View, Image, TextInput, TouchableHighlight } from 'react-native';
 
 import { iconImages } from './../../images';
 
-import { styles } from './styles';
+import { styles, buttonUnderlayColor } from './styles';
 
 class Login extends Component {
     state = {
-        inputTextEmail: 'email',
-        inputTextBox: 'Text box'
+        login: '',
+        password: ''
     };
+
+    onChangeText(id, newText) {
+        this.setState({ [id]: newText })
+    }
+
+    redirect() {
+        this.props.navigation.navigate('ProductList', {
+            screen: 'ProductList'
+        });
+    }
+
+    async login() {
+        const config = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: this.state.login,
+                password: this.state.password
+            })
+        };
+
+        try {
+            const response = await fetch('http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token', config);
+
+            if (response.status >= 200 && response.status < 300) {
+                this.redirect();
+            }
+        } catch (errors) {
+            console.log(errors);
+        }
+    }
 
     render() {
         return (
@@ -20,17 +54,18 @@ class Login extends Component {
                 <Text style={styles.title}>Friday's shop</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(inputTextEmail) => this.setState({inputTextEmail})}
-                    value={this.state.inputTextEmail}
-                    />
+                    placeholder='login'
+                    onChangeText={this.onChangeText.bind(this, 'login')}
+                />
                 <TextInput
                     style={[styles.input, styles.inputLast]}
-                    onChangeText={(inputTextBox) => this.setState({inputTextBox})}
-                    value={this.state.inputTextBox}
-                    />
+                    placeholder='password'
+                    secureTextEntry={true}
+                    onChangeText={this.onChangeText.bind(this, 'password')}
+                />
                 <TouchableHighlight
-                    onPress={() => alert('OK')}
-                    underlayColor='#263852'
+                    onPress={this.login.bind(this)}
+                    underlayColor={buttonUnderlayColor}
                     style={styles.button}>
                     <Text style={styles.buttonText}>login</Text>
                 </TouchableHighlight>

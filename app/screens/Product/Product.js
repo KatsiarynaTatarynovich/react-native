@@ -3,26 +3,33 @@ import { Text, View, Image, TouchableHighlight } from 'react-native';
 
 import { iconImages } from './../../images';
 
-import { styles } from './styles';
+import { styles, buttonUnderlayColor } from './styles';
 
 class Product extends Component {
+    redirect() {
+        this.props.navigation.navigate('ProductList', {
+            screen: 'ProductList'
+        });
+    }
+
     render() {
+        const {navigation} = this.props,
+            title = navigation.getParam('title'),
+            image = navigation.getParam('image'),
+            description = navigation.getParam('description');
+
         return (
             <View style={styles.container}>
                 <View style={styles.product}>
                     <Image
-                        source={iconImages.emptyJamJar}
+                        source={image}
                         style={styles.productImage}/>
-                    <Text style={styles.productTitle}>Product 1</Text>
-                    <Text style={styles.productInfo}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                        nulla pariatur. Excepteur sint occaecat.
-                    </Text>
+                    <Text style={styles.productTitle}>{JSON.stringify(title)}</Text>
+                    <Text style={styles.productInfo}>{JSON.stringify(description)}</Text>
                 </View>
                 <TouchableHighlight
-                    onPress={() => alert('OK')}
-                    underlayColor='#263852'
+                    onPress={this.redirect.bind(this)}
+                    underlayColor={buttonUnderlayColor}
                     style={styles.button}>
                     <Text style={styles.buttonText}>All Products</Text>
                 </TouchableHighlight>
