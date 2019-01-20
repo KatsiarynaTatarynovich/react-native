@@ -7,7 +7,7 @@ import { styles, buttonUnderlayColor } from './styles';
 
 class ProductListItem extends Component {
     redirect = () => {
-        this.props.redirectToItem(this.props.title, this.props.location, this.props.description);
+        this.props.redirectToItem(this.props.title, this.props.locationInfo, this.props.description);
     };
 
     render() {
@@ -34,7 +34,16 @@ class ProductListItem extends Component {
 
 ProductListItem.defaultProps = {
     image: iconImages.emptyJamJar,
-    location: 'ddd',
+    locationInfo: {
+        id: '1',
+        name: 'Location Name',
+        coordinate: {
+            latitude: 37.78925,
+            longitude: -122.4324,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121
+        }
+    },
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid, atque dicta dolores earum eius, eveniet expedita inventore mollitia natus nihil, numquam officiis possimus quae quo reiciendis saepe. Aliquam, necessitatibus.'
 };
 

@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
         bottom: 0
     },
 }),
-    buttonUnderlayColor = '#263852';
+    markerColor = '#263852';
 
-export { styles, buttonUnderlayColor };
+export { styles, markerColor };

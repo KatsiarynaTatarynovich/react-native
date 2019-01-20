@@ -60,10 +60,10 @@ class ProductList extends Component {
         }
     };
 
-    redirectToItem = (title, location, description) => {
+    redirectToItem = (title, locationInfo, description) => {
         this.props.navigation.navigate('Product', {
             title,
-            location,
+            locationInfo,
             description
         });
     };
@@ -74,7 +74,7 @@ class ProductList extends Component {
         <ProductListItem
             redirectToItem={this.redirectToItem}
             title={item.name}
-            location={item.location}
+            locationInfo={item.locationInfo}
             description={item.description}
         />
     );

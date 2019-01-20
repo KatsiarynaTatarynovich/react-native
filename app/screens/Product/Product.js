@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableHighlight } from 'react-native';
-
-import { iconImages } from './../../images';
-
-import { styles, buttonUnderlayColor, buttonMapUnderlayColor } from './styles';
 
 import Location from '../../components/Location';
+import ProductItem from '../../components/ProductItem';
 
 class Product extends Component {
+    constructor(props) {
+        super(props);
+
+        const {navigation} = this.props;
+
+        this.title = JSON.stringify(navigation.getParam('title'));
+        this.locationInfo = navigation.getParam('locationInfo');
+        this.description = JSON.stringify(navigation.getParam('description'));
+    }
+
     state = {
         isMapVisible: false
     };
 
-    redirect() {
+    redirect = () => {
         this.props.navigation.navigate('ProductList', {
             screen: 'ProductList'
         });
-    }
+    };
 
     openMap = () => {
         this.setState({
@@ -25,35 +31,19 @@ class Product extends Component {
     };
 
     render() {
-        const {navigation} = this.props,
-            title = navigation.getParam('title'),
-            location = navigation.getParam('location'),
-            description = navigation.getParam('description');
-
         return (
             <React.Fragment>
-            { this.state.isMapVisible ? <Location/> : <View style={styles.container}>
-                <View style={styles.product}>
-                    <View style={styles.titleWrap}>
-                        <TouchableHighlight
-                            onPress={this.openMap}
-                            underlayColor={buttonMapUnderlayColor}
-                            style={styles.buttonMap}>
-                            <Image
-                                source={iconImages.map}
-                                style={styles.productImage}/>
-                        </TouchableHighlight>
-                        <Text style={styles.productTitle}>{JSON.stringify(title)}</Text>
-                    </View>
-                    <Text style={styles.productInfo}>{JSON.stringify(description)}</Text>
-                </View>
-                <TouchableHighlight
-                    onPress={this.redirect.bind(this)}
-                    underlayColor={buttonUnderlayColor}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>All Products</Text>
-                </TouchableHighlight>
-            </View>}
+                { this.state.isMapVisible ?
+                    <Location
+                        locationInfo={this.locationInfo}
+                    /> :
+                    <ProductItem
+                        redirect={this.redirect}
+                        openMap={this.openMap}
+                        title={this.title}
+                        description={this.description}
+                    />
+                }
             </React.Fragment>
         );
     }
