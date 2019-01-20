@@ -9,8 +9,9 @@ import ProductList from './screens/ProductList';
 import OfflineNotice from './features/OfflineNotice';
 
 const AppNavigator  = createStackNavigator({
-        ProductList: {screen: ProductList},
+    Login: {screen: Login},
     Product: {screen: Product},
+    ProductList: {screen: ProductList}
 },
 {
     headerMode: 'none',
@@ -41,7 +42,10 @@ export default class App extends Component {
     render() {
         return (
             <React.Fragment>
-                { this.state.isConnected ? <AppContainer /> : <OfflineNotice /> }
+                { this.state.isConnected ?
+                    <AppContainer /> :
+                    <OfflineNotice />
+                }
             </React.Fragment>
         );
     }

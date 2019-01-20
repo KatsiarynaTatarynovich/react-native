@@ -37,6 +37,7 @@ ProductListItem.defaultProps = {
     locationInfo: {
         id: '1',
         name: 'Location Name',
+        phoneProvider: '0123456789',
         coordinate: {
             latitude: 37.78925,
             longitude: -122.4324,
