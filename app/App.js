@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 import { NetInfo } from 'react-native';
 
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import Login from './screens/Login';
 import Product from './screens/Product';
 import ProductList from './screens/ProductList';
 import OfflineNotice from './features/OfflineNotice';
 
-const AppNavigator  = createStackNavigator({
-    Login: {screen: Login},
+const Stack = {
+    ProductList: {screen: ProductList},
     Product: {screen: Product},
-    ProductList: {screen: ProductList}
-},
-{
-    headerMode: 'none',
-    navigationOptions: {
-        headerVisible: false,
+};
+const DrawerNavigator = {
+    ProductListStack: {
+        name: 'ProductListStack',
+        screen: createStackNavigator(Stack, { initialRouteName: 'ProductList' })
+    },
+    ProductStack: {
+        name: 'ProductStack',
+        screen: createStackNavigator(Stack, { initialRouteName: 'Product' })
     }
-});
+};
+const RootNavigator =
+    createStackNavigator({
+            drawer: {
+                name: 'drawer',
+                screen: createDrawerNavigator(
+                    DrawerNavigator,
+                ),
+            },
+            ...Stack
+        },
+        {
+            headerMode: 'none',
+            navigationOptions: {
+                headerVisible: false,
+            }
+        }
+    );
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(RootNavigator);
 
 export default class App extends Component {
     state = {
