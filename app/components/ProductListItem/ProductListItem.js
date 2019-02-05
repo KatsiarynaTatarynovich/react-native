@@ -6,12 +6,14 @@ import { iconImages } from './../../images';
 import { styles } from './styles';
 
 class ProductListItem extends Component {
-    state = {
-        scaleAnimValue: new Animated.Value(0),
-    };
+    constructor(props) {
+        super(props);
+
+        this.scaleAnimValue = new Animated.Value(0);
+    }
 
     handlePressIn = () => {
-        Animated.timing(this.state.scaleAnimValue, {
+        Animated.timing(this.scaleAnimValue, {
             toValue: 1,
             duration: 250,
             easing: Easing.linear,
@@ -20,7 +22,7 @@ class ProductListItem extends Component {
     };
 
     handlePressOut = () => {
-        Animated.timing(this.state.scaleAnimValue, {
+        Animated.timing(this.scaleAnimValue, {
             toValue: 0,
             duration: 100,
             easing: Easing.linear,
@@ -33,7 +35,7 @@ class ProductListItem extends Component {
     };
 
     render() {
-        const arrowRightScale = this.state.scaleAnimValue.interpolate({
+        const arrowRightScale = this.scaleAnimValue.interpolate({
             inputRange: [0, 0.5, 1],
             outputRange: [1, 1.1, 1.2]
         });
