@@ -1,15 +1,51 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TextInput, TouchableHighlight, Animated, Easing } from 'react-native';
 
 import { iconImages } from './../../images';
 
 import { styles, buttonUnderlayColor } from './styles';
 
 class Login extends Component {
-    state = {
-        login: '',
-        password: ''
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            login: '',
+            password: ''
+        };
+        this.imageRotateValue = new Animated.Value(0);
+        this.imageTranslateXValue = new Animated.Value(0);
+        this.titleTranslateYValue = new Animated.Value(0);
+        this.titleScaleValue = new Animated.Value(0);
+    }
+
+    componentDidMount() {
+        this.imageTranslateXValue.setValue(0);
+        this.titleTranslateYValue.setValue(0);
+
+        Animated.sequence([
+            Animated.timing(this.titleTranslateYValue, {
+                toValue: 1,
+                duration: 400,
+                easing: Easing.easing
+            }),
+            Animated.spring(this.titleScaleValue, {
+                toValue: 1,
+                friction: 6
+            }),
+            Animated.parallel([
+                Animated.timing(this.imageTranslateXValue, {
+                    toValue: 1,
+                    duration: 400,
+                    easing: Easing.easing
+                }),
+                Animated.spring(this.imageRotateValue, {
+                    toValue: 1,
+                    friction: 3
+                }),
+            ]),
+        ]).start();
+    }
 
     onChangeText(id, newText) {
         this.setState({ [id]: newText })
@@ -46,12 +82,32 @@ class Login extends Component {
     }
 
     render() {
+        const imageMoveX = this.imageTranslateXValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-200, 200]
+        });
+        const imageRotate = this.imageRotateValue.interpolate({
+            inputRange: [0, 0.3, 0.5, 0.7, 1],
+            outputRange: ["0deg", "360deg", "-360deg", "360deg", "0deg"]
+        });
+        const titleMoveY = this.titleTranslateYValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-200, 200]
+        });
+        const titleScale = this.titleScaleValue.interpolate({
+            inputRange: [0, 0.5, 1],
+            outputRange: [0.25, 0.5, 1]
+        });
+
+        let transformImageStyle = { transform: [{ translateX: imageMoveX }, { rotate: imageRotate}] };
+        let transformTitleStyle = { transform: [{ translateY: titleMoveY}, { scale: titleScale }] };
+
         return (
             <View style={styles.container}>
-                <Image
+                <Animated.Image
                     source={iconImages.cookieMonster}
-                    style={styles.image}/>
-                <Text style={styles.title}>Friday's shop</Text>
+                    style={[styles.image, transformImageStyle]}/>
+                <Animated.Text style={[styles.title, transformTitleStyle]}>Friday's shop</Animated.Text>
                 <TextInput
                     style={styles.input}
                     placeholder='login'
