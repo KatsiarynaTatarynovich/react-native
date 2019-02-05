@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, TouchableHighlight, Animated, Easing } from 'react-native';
+import { Text, View, Image, TextInput, TouchableHighlight, TouchableNativeFeedback, Animated, Easing } from 'react-native';
 
 import { iconImages } from './../../images';
 
@@ -119,12 +119,13 @@ class Login extends Component {
                     secureTextEntry={true}
                     onChangeText={this.onChangeText.bind(this, 'password')}
                 />
-                <TouchableHighlight
+                <TouchableNativeFeedback
                     onPress={this.login.bind(this)}
-                    underlayColor={buttonUnderlayColor}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>login</Text>
-                </TouchableHighlight>
+                    background={TouchableNativeFeedback.Ripple(buttonUnderlayColor)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>login</Text>
+                    </View>
+                </TouchableNativeFeedback>
             </View>
         );
     }
