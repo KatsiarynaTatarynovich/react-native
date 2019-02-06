@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, TouchableHighlight, TouchableNativeFeedback, Animated, Easing } from 'react-native';
+import { Text, View, Image, TextInput, TouchableHighlight, TouchableNativeFeedback, Animated, Easing, AsyncStorage } from 'react-native';
 
 import { iconImages } from './../../images';
 
@@ -20,6 +20,8 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        this.checkIfUserExist();
+
         this.imageTranslateXValue.setValue(0);
         this.titleTranslateYValue.setValue(0);
 
@@ -45,6 +47,26 @@ class Login extends Component {
                 }),
             ]),
         ]).start();
+    }
+
+    async checkIfUserExist() {
+        try {
+            const value = await AsyncStorage.getItem('login');
+
+            if (value !== null) {
+                this.redirect();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async setStorage() {
+        try {
+            await AsyncStorage.setItem('login', this.state.login);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     onChangeText(id, newText) {
@@ -74,10 +96,11 @@ class Login extends Component {
             const response = await fetch('http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token', config);
 
             if (response.status >= 200 && response.status < 300) {
-                this.redirect();
+                this.setStorage()
+                    .then(this.redirect);
             }
-        } catch (errors) {
-            console.log(errors);
+        } catch (error) {
+            console.log(error);
         }
     }
 

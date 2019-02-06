@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     flatListMarginTop: {
-        marginTop: 85,
+        marginTop: 8
     }
 });
 
