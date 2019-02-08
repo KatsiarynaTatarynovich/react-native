@@ -53,9 +53,9 @@ class Login extends Component {
         try {
             const value = await AsyncStorage.getItem('login');
 
-            if (value !== null) {
-                this.redirect();
-            }
+            // if (value !== null) {
+            //     this.redirect();
+            // }
         } catch (error) {
             console.log(error);
         }
@@ -79,7 +79,7 @@ class Login extends Component {
         });
     }
 
-    async login() {
+    async login () {
         const config = {
             method: 'POST',
             headers: {
@@ -97,7 +97,7 @@ class Login extends Component {
 
             if (response.status >= 200 && response.status < 300) {
                 this.setStorage()
-                    .then(this.redirect);
+                    .then(this.redirect());
             }
         } catch (error) {
             console.log(error);
