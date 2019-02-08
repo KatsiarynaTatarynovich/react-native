@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { Text, View, Modal, TouchableHighlight } from 'react-native';
+import { Text, View, Modal, TouchableHighlight, Vibration } from 'react-native';
 
 import { styles, buttonUnderlayColor } from './styles';
+
+const DURATION = 500;
 
 class OfflineNotice extends Component {
     state = {
         modalVisible: true
     };
+
+    componentDidMount() {
+        Vibration.vibrate(DURATION);
+    }
 
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
