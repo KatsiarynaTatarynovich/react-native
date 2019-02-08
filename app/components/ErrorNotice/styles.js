@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#76cdd8',
+        backgroundColor: '#d35d47',
         padding: 20,
     },
     title: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     button: {
         width: 100,
         alignItems: 'center',
-        backgroundColor: '#008ACE',
+        backgroundColor: '#a54634',
         borderRadius: 5,
         margin: 10,
     },
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
         fontFamily: 'vinchHand',
     }
 }),
-    buttonUnderlayColor = '#263852';
+    buttonUnderlayColor = '#883a2b';
 
 export { styles, buttonUnderlayColor };

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, TouchableHighlight, TouchableNativeFeedback, Animated, Easing, AsyncStorage } from 'react-native';
+import { Text, View, Image, TextInput, TouchableNativeFeedback, Animated, Easing, AsyncStorage } from 'react-native';
+
+import ErrorNotice from '../../components/ErrorNotice';
 
 import { iconImages } from './../../images';
 
@@ -11,7 +13,8 @@ class Login extends Component {
 
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            isLoginRequestSuccessful: true
         };
         this.imageRotateValue = new Animated.Value(0);
         this.imageTranslateXValue = new Animated.Value(0);
@@ -53,9 +56,9 @@ class Login extends Component {
         try {
             const value = await AsyncStorage.getItem('login');
 
-            // if (value !== null) {
-            //     this.redirect();
-            // }
+            if (value !== null) {
+                this.redirect();
+            }
         } catch (error) {
             console.log(error);
         }
@@ -96,11 +99,13 @@ class Login extends Component {
             const response = await fetch('http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token', config);
 
             if (response.status >= 200 && response.status < 300) {
+                this.state.isLoginRequestSuccessful = true;
+
                 this.setStorage()
                     .then(this.redirect());
             }
         } catch (error) {
-            console.log(error);
+            this.state.isLoginRequestSuccessful = false;
         }
     }
 
@@ -126,30 +131,37 @@ class Login extends Component {
         let transformTitleStyle = { transform: [{ translateY: titleMoveY}, { scale: titleScale }] };
 
         return (
-            <View style={styles.container}>
-                <Animated.Image
-                    source={iconImages.cookieMonster}
-                    style={[styles.image, transformImageStyle]}/>
-                <Animated.Text style={[styles.title, transformTitleStyle]}>Friday's shop</Animated.Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder='login'
-                    onChangeText={this.onChangeText.bind(this, 'login')}
-                />
-                <TextInput
-                    style={[styles.input, styles.inputLast]}
-                    placeholder='password'
-                    secureTextEntry={true}
-                    onChangeText={this.onChangeText.bind(this, 'password')}
-                />
-                <TouchableNativeFeedback
-                    onPress={this.login.bind(this)}
-                    background={TouchableNativeFeedback.Ripple(buttonUnderlayColor)}>
-                    <View style={styles.button}>
-                        <Text style={styles.buttonText}>login</Text>
-                    </View>
-                </TouchableNativeFeedback>
-            </View>
+            this.state.isLoginRequestSuccessful
+            ? (
+                <View style={styles.container}>
+                    <Animated.Image
+                        source={iconImages.cookieMonster}
+                        style={[styles.image, transformImageStyle]}/>
+                    <Animated.Text style={[styles.title, transformTitleStyle]}>Friday's shop</Animated.Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='login'
+                        onChangeText={this.onChangeText.bind(this, 'login')}
+                    />
+                    <TextInput
+                        style={[styles.input, styles.inputLast]}
+                        placeholder='password'
+                        secureTextEntry={true}
+                        onChangeText={this.onChangeText.bind(this, 'password')}
+                    />
+                    <TouchableNativeFeedback
+                        onPress={this.login.bind(this)}
+                        background={TouchableNativeFeedback.Ripple(buttonUnderlayColor)}>
+                        <View style={styles.button}>
+                            <Text style={styles.buttonText}>login</Text>
+                        </View>
+                    </TouchableNativeFeedback>
+                </View>
+            )
+            : (
+                <ErrorNotice
+                    errorMessage="Something went wrong :("/>
+            )
         );
     }
 }
