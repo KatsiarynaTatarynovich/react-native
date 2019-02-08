@@ -3,9 +3,9 @@ import { Text, View, Modal, TouchableHighlight, Vibration } from 'react-native';
 
 import { styles, buttonUnderlayColor } from './styles';
 
-const DURATION = 500;
+const DURATION = 600;
 
-class OfflineNotice extends Component {
+class ErrorNotice extends Component {
     state = {
         modalVisible: true
     };
@@ -26,7 +26,7 @@ class OfflineNotice extends Component {
                 visible={this.state.modalVisible}
                 onRequestClose={this.setModalVisible.bind(this, false)}>
                 <View style={styles.container}>
-                    <Text style={styles.title}>No Internet Connection :(</Text>
+                    <Text style={styles.title}>{this.props.errorMessage}</Text>
                     <View style={styles.buttonContainer}>
                         <TouchableHighlight
                             onPress={this.setModalVisible.bind(this, true)}
@@ -47,4 +47,4 @@ class OfflineNotice extends Component {
     }
 }
 
-export default OfflineNotice;
+export default ErrorNotice;
