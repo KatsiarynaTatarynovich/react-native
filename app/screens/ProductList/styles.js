@@ -7,12 +7,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#76cdd8',
     },
-    titleWrap: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        height: 85,
-    },
     title: {
         width: '100%',
         fontSize: 30,
@@ -23,11 +17,8 @@ const styles = StyleSheet.create({
         fontFamily: 'vinchHand',
     },
     flatList: {
-        width: '100%',
+      width: '100%',
     },
-    flatListMarginTop: {
-        marginTop: 85,
-    }
 });
 
 export { styles };

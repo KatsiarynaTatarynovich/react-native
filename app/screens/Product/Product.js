@@ -1,25 +1,7 @@
 import React, { Component } from 'react';
-import { LayoutAnimation, Platform, UIManager } from 'react-native';
 
 import Location from '../../components/Location';
 import ProductItem from '../../components/ProductItem';
-
-const CustomLayoutAnimation = {
-  duration: 300,
-  create: {
-      property: LayoutAnimation.Properties.opacity,
-      type: LayoutAnimation.Types.linear,
-  },
-  update: {
-      property: LayoutAnimation.Properties.opacity,
-      type: LayoutAnimation.Types.linear,
-  },
-  delete: {
-      duration: 200,
-      property: LayoutAnimation.Properties.opacity,
-      type: LayoutAnimation.Types.linear,
-  }
-};
 
 class Product extends Component {
     constructor(props) {
@@ -30,10 +12,6 @@ class Product extends Component {
         this.title = JSON.stringify(navigation.getParam('title'));
         this.locationInfo = navigation.getParam('locationInfo');
         this.description = JSON.stringify(navigation.getParam('description'));
-
-        if (Platform.OS === 'android') {
-            UIManager.setLayoutAnimationEnabledExperimental(true);
-        }
     }
 
     state = {
@@ -47,11 +25,9 @@ class Product extends Component {
     };
 
     openMap = () => {
-        LayoutAnimation.configureNext(CustomLayoutAnimation);
-
         this.setState({
             isMapVisible: true
-        });
+        })
     };
 
     render() {

@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, Animated } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 
 import { styles } from './styles';
 
 import ProductListItem from './../../components/ProductListItem';
 
 const ITEMS_PER_PAGE = 12;
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 class ProductList extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            items: [],
-            isFetching: false,
-            page: 1,
-            maxNumberOfPages: 0,
-        };
-        this.flatListValue = new Animated.Value(0);
-    }
+    state = {
+        items: [],
+        isFetching: false,
+        page: 1,
+        maxNumberOfPages: 0,
+    };
 
     getApiData = () => {
         return fetch(`http://ecsc00a02fb3.epam.com/rest/V1/products?searchCriteria[currentPage]=${this.state.page}&searchCriteria[pageSize]=${ITEMS_PER_PAGE}`)
@@ -43,13 +37,6 @@ class ProductList extends Component {
                 });
             });
     }
-
-    onScrollHandlerAnimation = () => {
-        Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.flatListValue }} }],
-            { useNativeDriver: true }
-        );
-    };
 
     onScrollHandler = () => {
         this.setState({
@@ -103,28 +90,16 @@ class ProductList extends Component {
     };
 
     render() {
-        const translateY = this.flatListValue.interpolate({
-            inputRange: [0, 70],
-            outputRange: [0, -70],
-            extrapolate: 'clamp',
-        });
-
-        let transformStyle = { transform: [{ translateY }] };
-
         return (
             <View style={styles.container}>
-                <Animated.View style={[styles.titleWrap, transformStyle]}>
-                    <Text style={styles.title}>Products</Text>
-                </Animated.View>
-                <AnimatedFlatList
-                    contentContainerStyle={styles.flatListMarginTop}
-                    onScroll={this.onScrollHandlerAnimation}
+                <Text style={styles.title}>Products</Text>
+                <FlatList
                     data={this.state.items}
                     renderItem={this.renderItems}
                     keyExtractor={this.keyExtractor}
                     style={styles.flatList}
                     refreshing={this.state.isFetching}
-                    onRefresh={this.onRefresh}
+                    onRefresh={() => this.onRefresh()}
                     onEndReached={this.onScrollHandler}
                     onEndReachedThreshold={0.5}
                 />

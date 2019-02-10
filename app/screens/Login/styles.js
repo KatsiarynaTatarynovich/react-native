@@ -9,11 +9,9 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     image: {
-        left: -200,
         marginBottom: 20,
     },
     title: {
-        top: -200,
         fontSize: 30,
         color: '#fff',
         marginBottom: 60,

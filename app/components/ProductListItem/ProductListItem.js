@@ -1,47 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableWithoutFeedback, Animated, Easing  } from 'react-native';
+import { Text, View, Image, TouchableHighlight } from 'react-native';
 
 import { iconImages } from './../../images';
 
-import { styles } from './styles';
+import { styles, buttonUnderlayColor } from './styles';
 
 class ProductListItem extends Component {
-    constructor(props) {
-        super(props);
-
-        this.scaleAnimValue = new Animated.Value(0);
-    }
-
-    handlePressIn = () => {
-        Animated.timing(this.scaleAnimValue, {
-            toValue: 1,
-            duration: 250,
-            easing: Easing.linear,
-            useNativeDriver: true
-        }).start();
-    };
-
-    handlePressOut = () => {
-        Animated.timing(this.scaleAnimValue, {
-            toValue: 0,
-            duration: 100,
-            easing: Easing.linear,
-            useNativeDriver: true
-        }).start();
-    };
-
     redirect = () => {
         this.props.redirectToItem(this.props.title, this.props.locationInfo, this.props.description);
     };
 
     render() {
-        const arrowRightScale = this.scaleAnimValue.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [1, 1.1, 1.2]
-        });
-
-        let transformStyle = { transform: [{ scale: arrowRightScale }] };
-
         return (
             <View style={styles.productItem}>
                 <View style={styles.productInfo}>
@@ -50,15 +19,14 @@ class ProductListItem extends Component {
                         style={styles.productImage}/>
                     <Text style={styles.productTitle}>{this.props.title}</Text>
                 </View>
-                <TouchableWithoutFeedback
+                <TouchableHighlight
                     onPress={this.redirect}
-                    onPressIn={this.handlePressIn}
-                    onPressOut={this.handlePressOut}
+                    underlayColor={buttonUnderlayColor}
                     style={styles.button}>
-                    <Animated.Image
+                    <Image
                         source={iconImages.arrowRight}
-                        style={[styles.arrowRightIcon, transformStyle]}/>
-                </TouchableWithoutFeedback>
+                        style={styles.arrowRightIcon}/>
+                </TouchableHighlight>
             </View>
         );
     }
