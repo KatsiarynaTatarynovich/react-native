@@ -6,7 +6,7 @@ import { createAppContainer, createStackNavigator } from 'react-navigation';
 import Login from './screens/Login';
 import Product from './screens/Product';
 import ProductList from './screens/ProductList';
-import OfflineNotice from './features/OfflineNotice';
+import ErrorNotice from './components/ErrorNotice';
 
 const AppNavigator  = createStackNavigator({
     Login: {screen: Login},
@@ -41,12 +41,15 @@ export default class App extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                { this.state.isConnected ?
-                    <AppContainer /> :
-                    <OfflineNotice />
-                }
-            </React.Fragment>
+            this.state.isConnected
+                ? (
+                    <AppContainer />
+                )
+                : (
+                    <ErrorNotice
+                        errorMessage="No Internet Connection :("
+                    />
+                )
         );
     }
 }
