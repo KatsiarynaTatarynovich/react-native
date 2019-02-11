@@ -12,6 +12,7 @@
     "react-native-communications": "^2.2.1",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-maps": "https://github.com/react-community/react-native-maps.git",
+    "react-native-splash-screen": "^3.2.0",
     "react-navigation": "^3.0.7"
   },
   "devDependencies": {

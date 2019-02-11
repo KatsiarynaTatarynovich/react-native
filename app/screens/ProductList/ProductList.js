@@ -44,13 +44,6 @@ class ProductList extends Component {
             });
     }
 
-    onScrollHandlerAnimation = () => {
-        Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.flatListValue }} }],
-            { useNativeDriver: true }
-        );
-    };
-
     onScrollHandler = () => {
         this.setState({
             page: this.state.page + 1
@@ -118,7 +111,12 @@ class ProductList extends Component {
                 </Animated.View>
                 <AnimatedFlatList
                     contentContainerStyle={styles.flatListMarginTop}
-                    onScroll={this.onScrollHandlerAnimation}
+                    onScroll={() => {
+                        Animated.event(
+                            [{ nativeEvent: { contentOffset: { y: this.flatListValue }} }],
+                            { useNativeDriver: true }
+                        );
+                    }}
                     data={this.state.items}
                     renderItem={this.renderItems}
                     keyExtractor={this.keyExtractor}

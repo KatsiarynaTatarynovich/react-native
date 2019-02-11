@@ -40,6 +40,7 @@
 		A96EB128B6FD4B65888FE4F2 /* vinchHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5979737756814E0888D28099 /* vinchHand.ttf */; };
 		55D39DCEA99C420DB2CF2C2C /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1473F51967824ECEB42F2D1A /* libRNGestureHandler.a */; };
 		9D6AF11B2CD64F56B34A93E1 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0E0CE5DBC7434087A80716 /* libAirMaps.a */; };
+		28EF7C024EC74DE485D25F38 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D105D85B85142CE8F2729B2 /* libSplashScreen.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +351,8 @@
 		1473F51967824ECEB42F2D1A /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		F12EA9C771D74AD99FE8CD0F /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		8C0E0CE5DBC7434087A80716 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3C02B764B1FE4B48975B8438 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "SplashScreen.xcodeproj"; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		7D105D85B85142CE8F2729B2 /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +382,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				55D39DCEA99C420DB2CF2C2C /* libRNGestureHandler.a in Frameworks */,
 				9D6AF11B2CD64F56B34A93E1 /* libAirMaps.a in Frameworks */,
+				28EF7C024EC74DE485D25F38 /* libSplashScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +571,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				6F34D6AF314B4475B6E39281 /* RNGestureHandler.xcodeproj */,
 				F12EA9C771D74AD99FE8CD0F /* AirMaps.xcodeproj */,
+				3C02B764B1FE4B48975B8438 /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1207,11 +1212,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1235,11 +1242,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;
@@ -1264,6 +1273,7 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1287,6 +1297,7 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;
@@ -1318,11 +1329,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1354,11 +1367,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;
@@ -1389,11 +1404,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1424,11 +1441,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;

@@ -14,9 +14,13 @@ class ErrorNotice extends Component {
         Vibration.vibrate(DURATION);
     }
 
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
-    }
+    open = () => {
+        this.setModalVisible(true);
+    };
+
+    close = () => {
+        this.setModalVisible(false);
+    };
 
     render() {
         return (
@@ -24,18 +28,18 @@ class ErrorNotice extends Component {
                 animationType="slide"
                 transparent={false}
                 visible={this.state.modalVisible}
-                onRequestClose={this.setModalVisible.bind(this, false)}>
+                onRequestClose={this.close}>
                 <View style={styles.container}>
                     <Text style={styles.title}>{this.props.errorMessage}</Text>
                     <View style={styles.buttonContainer}>
                         <TouchableHighlight
-                            onPress={this.setModalVisible.bind(this, true)}
+                            onPress={this.open}
                             underlayColor={buttonUnderlayColor}
                             style={styles.button}>
                             <Text style={styles.buttonText}>try again</Text>
                         </TouchableHighlight>
                         <TouchableHighlight
-                            onPress={this.setModalVisible.bind(this, false)}
+                            onPress={this.close}
                             underlayColor={buttonUnderlayColor}
                             style={styles.button}>
                             <Text style={styles.buttonText}>close</Text>
