@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TextInput, TouchableNativeFeedback, Animated, Easing, AsyncStorage } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 import ErrorNotice from '../../components/ErrorNotice';
 
@@ -20,6 +21,7 @@ class Login extends Component {
         this.imageTranslateXValue = new Animated.Value(0);
         this.titleTranslateYValue = new Animated.Value(0);
         this.titleScaleValue = new Animated.Value(0);
+        this.
     }
 
     componentDidMount() {
@@ -56,9 +58,9 @@ class Login extends Component {
         try {
             const value = await AsyncStorage.getItem('login');
 
-            if (value !== null) {
-                this.redirect();
-            }
+            // if (value !== null) {
+            //     this.redirect();
+            // }
         } catch (error) {
             console.log(error);
         }
