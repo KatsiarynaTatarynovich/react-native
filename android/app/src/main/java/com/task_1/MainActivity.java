@@ -2,6 +2,7 @@ package com.task_1;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
+import com.airbnb.android.react.lottie.LottiePackage;
 
 public class MainActivity extends ReactActivity {
 
@@ -20,4 +21,5 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "Task_1";
     }
+
 }
