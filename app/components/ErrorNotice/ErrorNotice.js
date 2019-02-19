@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
-import { Text, View, Modal, TouchableHighlight, Vibration } from 'react-native';
+import { Text, View, Modal, TouchableHighlight, Vibration, Animated, Easing } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 import { styles, buttonUnderlayColor } from './styles';
 
 const DURATION = 600;
+const ANIMATION_PATH = '../../assets/animation/4053-crying-smoothymon.json';
+const ANIMATION_NETWORK_PATH = '../../assets/animation/3648-no-internet-connection.json';
 
 class ErrorNotice extends Component {
-    state = {
-        modalVisible: true
-    };
+    constructor(props) {
+        super(props);
+
+        this.state  = {
+            modalVisible: true
+        };
+
+        this.progress = new Animated.Value(0);
+    }
 
     componentDidMount() {
         Vibration.vibrate(DURATION);
+
+        Animated.loop(
+            Animated.timing(this.progress, {
+                toValue: 1,
+                duration: 5000
+            })
+        ).start();
     }
 
     open = () => {
@@ -31,6 +47,18 @@ class ErrorNotice extends Component {
                 onRequestClose={this.close}>
                 <View style={styles.container}>
                     <Text style={styles.title}>{this.props.errorMessage}</Text>
+                    { this.props.isNetworkError ?
+                        <LottieView
+                            source={require(ANIMATION_NETWORK_PATH)}
+                            progress={this.progress}
+                            style={styles.animationNetwork}
+                        /> :
+                        <LottieView
+                            source={require(ANIMATION_PATH)}
+                            progress={this.progress}
+                            style={styles.animation}
+                        />
+                    }
                     <View style={styles.buttonContainer}>
                         <TouchableHighlight
                             onPress={this.open}

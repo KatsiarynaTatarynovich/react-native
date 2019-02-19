@@ -50,6 +50,7 @@ export default class App extends Component {
                 : (
                     <ErrorNotice
                         errorMessage="No Internet Connection :("
+                        isNetworkError="true"
                     />
                 )
         );
