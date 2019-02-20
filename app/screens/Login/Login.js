@@ -56,9 +56,9 @@ class Login extends Component {
         try {
             const value = await AsyncStorage.getItem('login');
 
-            // if (value !== null) {
-            //     this.redirect();
-            // }
+            if (value !== null) {
+                this.redirect();
+            }
         } catch (error) {
             console.log(error);
         }
