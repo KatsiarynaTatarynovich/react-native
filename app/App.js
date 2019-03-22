@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NetInfo } from 'react-native';
-
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+import SplashScreen from 'react-native-splash-screen'
 
 import Login from './screens/Login';
 import Product from './screens/Product';
@@ -28,6 +28,8 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        SplashScreen.hide();
+
         NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
     }
 
@@ -48,6 +50,7 @@ export default class App extends Component {
                 : (
                     <ErrorNotice
                         errorMessage="No Internet Connection :("
+                        isNetworkError="true"
                     />
                 )
         );

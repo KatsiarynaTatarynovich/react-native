@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, Animated } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 import { styles } from './styles';
 
@@ -17,6 +18,7 @@ class ProductList extends Component {
             isFetching: false,
             page: 1,
             maxNumberOfPages: 0,
+            isGreetingShown: true,
         };
         this.flatListValue = new Animated.Value(0);
     }
@@ -39,17 +41,11 @@ class ProductList extends Component {
         this.getApiData()
             .then((responseJson) => {
                 this.setState({
-                    maxNumberOfPages: Math.ceil(responseJson.total_count / ITEMS_PER_PAGE)
+                    maxNumberOfPages: Math.ceil(responseJson.total_count / ITEMS_PER_PAGE),
+                    isGreetingShown: false
                 });
             });
     }
-
-    onScrollHandlerAnimation = () => {
-        Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.flatListValue }} }],
-            { useNativeDriver: true }
-        );
-    };
 
     onScrollHandler = () => {
         this.setState({
@@ -102,6 +98,12 @@ class ProductList extends Component {
         });
     };
 
+    getGreetingMessage = () => {
+        const systemName = DeviceInfo.getSystemName();
+
+        return `Hi ${systemName}'s user :)`;
+    };
+
     render() {
         const translateY = this.flatListValue.interpolate({
             inputRange: [0, 70],
@@ -113,21 +115,33 @@ class ProductList extends Component {
 
         return (
             <View style={styles.container}>
-                <Animated.View style={[styles.titleWrap, transformStyle]}>
-                    <Text style={styles.title}>Products</Text>
-                </Animated.View>
-                <AnimatedFlatList
-                    contentContainerStyle={styles.flatListMarginTop}
-                    onScroll={this.onScrollHandlerAnimation}
-                    data={this.state.items}
-                    renderItem={this.renderItems}
-                    keyExtractor={this.keyExtractor}
-                    style={styles.flatList}
-                    refreshing={this.state.isFetching}
-                    onRefresh={this.onRefresh}
-                    onEndReached={this.onScrollHandler}
-                    onEndReachedThreshold={0.5}
-                />
+                { this.state.isGreetingShown ?
+                    <View style={styles.greetingMessage}>
+                        <Text style={styles.title}>{this.getGreetingMessage()}</Text>
+                    </View> :
+                    <View>
+                        <Animated.View style={[styles.titleWrap, transformStyle]}>
+                            <Text style={styles.title}>Products</Text>
+                        </Animated.View>
+                        <AnimatedFlatList
+                            contentContainerStyle={styles.flatListMarginTop}
+                            onScroll={() => {
+                                Animated.event(
+                                    [{ nativeEvent: { contentOffset: { y: this.flatListValue }} }],
+                                    { useNativeDriver: true }
+                                );
+                            }}
+                            data={this.state.items}
+                            renderItem={this.renderItems}
+                            keyExtractor={this.keyExtractor}
+                            style={styles.flatList}
+                            refreshing={this.state.isFetching}
+                            onRefresh={this.onRefresh}
+                            onEndReached={this.onScrollHandler}
+                            onEndReachedThreshold={0.5}
+                        />
+                    </View>
+                }
             </View>
         );
     }

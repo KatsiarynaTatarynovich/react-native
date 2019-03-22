@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
     },
     flatListMarginTop: {
         marginTop: 85
+    },
+    greetingMessage: {
+        flex: 1,
+        justifyContent: 'center',
     }
 });
 

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         color: '#fff',
-        marginBottom: 60,
+        marginBottom: 10,
         fontFamily: 'vinchHand',
     },
     buttonContainer: {
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
         padding: 8,
         color: "#fff",
         fontFamily: 'vinchHand',
+    },
+    animationNetwork: {
+        width: 400,
+    },
+    animation: {
+        width: 300
     }
 }),
     buttonUnderlayColor = '#883a2b';
