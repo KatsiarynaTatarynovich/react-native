@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Modal, TouchableHighlight, Vibration, Animated, Easing } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { Sentry } from 'react-native-sentry';
 
 import { styles, buttonUnderlayColor } from './styles';
 
@@ -20,7 +21,10 @@ class ErrorNotice extends Component {
     }
 
     componentDidMount() {
+        const { errorMessage } = this.props;
+
         Vibration.vibrate(DURATION);
+        Sentry.captureMessage(errorMessage);
 
         Animated.loop(
             Animated.timing(this.progress, {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TextInput, TouchableNativeFeedback, Animated, Easing, AsyncStorage } from 'react-native';
 
 import ErrorNotice from '../../components/ErrorNotice';
+import { Sentry } from 'react-native-sentry';
 
 import { iconImages } from './../../images';
 
@@ -56,11 +57,11 @@ class Login extends Component {
         try {
             const value = await AsyncStorage.getItem('login');
 
-            if (value !== null) {
-                this.redirect();
-            }
+            // if (value !== null) {
+            //     this.redirect();
+            // }
         } catch (error) {
-            console.log(error);
+            Sentry.captureException(error);
         }
     }
 
@@ -68,7 +69,7 @@ class Login extends Component {
         try {
             await AsyncStorage.setItem('login', this.state.login);
         } catch (error) {
-            console.log(error);
+            Sentry.captureException(error);
         }
     }
 
@@ -106,6 +107,7 @@ class Login extends Component {
             }
         } catch (error) {
             this.state.isLoginRequestSuccessful = false;
+            Sentry.captureException(error);
         }
     }
 

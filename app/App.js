@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { NetInfo } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
+import { Sentry } from 'react-native-sentry';
 
 import Login from './screens/Login';
 import Product from './screens/Product';
 import ProductList from './screens/ProductList';
 import ErrorNotice from './components/ErrorNotice';
+
+Sentry.config('https://b075453ef1044e7985286d33a35a976d@sentry.io/1422463').install();
 
 const AppNavigator  = createStackNavigator({
     Login: {screen: Login},
