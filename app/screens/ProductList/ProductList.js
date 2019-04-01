@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, TouchableNativeFeedback, Animated, AsyncStorage } from 'react-native';
+import { Text, View, FlatList, Animated } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import { styles } from './styles';

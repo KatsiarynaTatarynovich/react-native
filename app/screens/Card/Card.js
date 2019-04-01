@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Image, ScrollView, ActivityIndicator, AsyncStorage, TouchableNativeFeedback } from 'react-native';
+import { Text, View, Image, ScrollView, ActivityIndicator, TouchableNativeFeedback } from 'react-native';
+import { getFromStorage } from '../../helpers/asyncStorage';
 import { iconImages } from './../../images';
 
 import { styles, buttonUnderlayColor} from './styles';
@@ -22,7 +23,7 @@ class Cart extends Component {
 
     loadCart = async () => {
         try {
-            const token = await AsyncStorage.getItem('loginToken');
+            const token = await getFromStorage('loginToken');
             const config = {
                 method: 'GET',
                 headers: {

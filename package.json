@@ -16,7 +16,8 @@
     "react-native-maps": "https://github.com/react-community/react-native-maps.git",
     "react-native-push-notification": "^3.1.2",
     "react-native-splash-screen": "^3.2.0",
-    "react-navigation": "^3.0.7"
+    "react-navigation": "^3.0.7",
+    "rn-secure-storage": "^1.0.82"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

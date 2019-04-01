@@ -3,6 +3,7 @@ package com.task_1;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.taluttasgiran.rnsecurestorage.RNSecureStoragePackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -14,6 +15,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.rn_mentoring.CustomAsyncStorage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,13 +32,15 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSecureStoragePackage(),
             new ReactNativePushNotificationPackage(),
             new RNDeviceInfo(),
             new LottiePackage(),
             new LottiePackage(),
             new SplashScreenReactPackage(),
             new MapsPackage(),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+            new CustomAsyncStorage()
       );
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, TouchableNativeFeedback, Animated, Easing, AsyncStorage } from 'react-native';
-
+import { Text, View, Image, TextInput, TouchableNativeFeedback, Animated, Easing } from 'react-native';
+import {putIntoStorage, getFromStorage} from '../../helpers/asyncStorage';
 import ErrorNotice from '../../components/ErrorNotice';
 
 import { iconImages } from './../../images';
@@ -54,7 +54,7 @@ class Login extends Component {
 
     async checkIfUserExist() {
         try {
-            const value = await AsyncStorage.getItem('loginToken');
+            const value = await getFromStorage('loginToken');
 
             if (value !== null) {
                 this.redirect();
@@ -66,7 +66,7 @@ class Login extends Component {
 
     async setStorage(token) {
         try {
-            await AsyncStorage.setItem('loginToken', token);
+            await putIntoStorage('loginToken', token);
         } catch (error) {
             console.log(error);
         }

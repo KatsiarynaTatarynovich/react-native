@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { LayoutAnimation, Platform, UIManager, AsyncStorage } from 'react-native';
+import { LayoutAnimation, Platform, UIManager } from 'react-native';
+import {getFromStorage} from '../../helpers/asyncStorage';
 import PushNotification from 'react-native-push-notification';
 
 import Location from '../../components/Location';
@@ -105,7 +106,7 @@ class Product extends Component {
         this.setState({ loading: true });
 
         try {
-            const token = await AsyncStorage.getItem('loginToken');
+            const token = await getFromStorage('loginToken');
             await this.addToCart(token, this.title);
             const items = await fetch('http://ecsc00a02fb3.epam.com/rest/default/V1/carts/mine/items', {
                 headers: {
