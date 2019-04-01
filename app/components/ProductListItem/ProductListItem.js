@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableWithoutFeedback, Animated, Easing  } from 'react-native';
+import { Text, View, Image, TouchableWithoutFeedback, Animated, Easing } from 'react-native';
 
 import { iconImages } from './../../images';
 

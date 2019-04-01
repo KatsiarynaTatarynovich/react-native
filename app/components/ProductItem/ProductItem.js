@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
 
 import { iconImages } from './../../images';
 
@@ -12,6 +12,14 @@ class Product extends Component {
 
     openMap = () => {
         this.props.openMap();
+    };
+
+    createCard = () => {
+        this.props.createCard();
+    };
+
+    redirectToCart = () => {
+        this.props.redirectToCart();
     };
 
     render() {
@@ -31,6 +39,20 @@ class Product extends Component {
                     </View>
                     <Text style={styles.productInfo}>{this.props.description}</Text>
                 </View>
+                <TouchableNativeFeedback
+                    onPress={this.createCard}
+                    background={TouchableNativeFeedback.Ripple(buttonUnderlayColor)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Create card</Text>
+                    </View>
+                </TouchableNativeFeedback>
+                <TouchableNativeFeedback
+                    onPress={this.redirectToCart}
+                    background={TouchableNativeFeedback.Ripple(buttonUnderlayColor)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Go to cards</Text>
+                    </View>
+                </TouchableNativeFeedback>
                 <TouchableHighlight
                     onPress={this.redirect}
                     underlayColor={buttonUnderlayColor}

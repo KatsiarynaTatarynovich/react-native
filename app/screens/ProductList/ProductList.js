@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, Animated } from 'react-native';
+import { Text, View, FlatList, TouchableNativeFeedback, Animated, AsyncStorage } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import { styles } from './styles';
@@ -19,6 +19,7 @@ class ProductList extends Component {
             page: 1,
             maxNumberOfPages: 0,
             isGreetingShown: true,
+            token: ''
         };
         this.flatListValue = new Animated.Value(0);
     }
@@ -82,7 +83,7 @@ class ProductList extends Component {
     renderItems = ({ item }) => (
         <ProductListItem
             redirectToItem={this.redirectToItem}
-            title={item.name}
+            title={item.sku}
             locationInfo={item.locationInfo}
             description={item.description}
         />
@@ -125,12 +126,11 @@ class ProductList extends Component {
                         </Animated.View>
                         <AnimatedFlatList
                             contentContainerStyle={styles.flatListMarginTop}
-                            onScroll={() => {
-                                Animated.event(
+                            onScroll={Animated.event(
                                     [{ nativeEvent: { contentOffset: { y: this.flatListValue }} }],
                                     { useNativeDriver: true }
-                                );
-                            }}
+                                )
+                            }
                             data={this.state.items}
                             renderItem={this.renderItems}
                             keyExtractor={this.keyExtractor}

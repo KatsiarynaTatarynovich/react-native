@@ -6,12 +6,14 @@ import SplashScreen from 'react-native-splash-screen'
 import Login from './screens/Login';
 import Product from './screens/Product';
 import ProductList from './screens/ProductList';
+import Card from './screens/Card';
 import ErrorNotice from './components/ErrorNotice';
 
 const AppNavigator  = createStackNavigator({
     Login: {screen: Login},
     ProductList: {screen: ProductList},
     Product: {screen: Product},
+    Card: {screen: Card}
 },
 {
     headerMode: 'none',

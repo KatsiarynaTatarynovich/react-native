@@ -54,7 +54,7 @@ class Login extends Component {
 
     async checkIfUserExist() {
         try {
-            const value = await AsyncStorage.getItem('login');
+            const value = await AsyncStorage.getItem('loginToken');
 
             if (value !== null) {
                 this.redirect();
@@ -64,9 +64,9 @@ class Login extends Component {
         }
     }
 
-    async setStorage() {
+    async setStorage(token) {
         try {
-            await AsyncStorage.setItem('login', this.state.login);
+            await AsyncStorage.setItem('loginToken', token);
         } catch (error) {
             console.log(error);
         }
@@ -97,11 +97,12 @@ class Login extends Component {
 
         try {
             const response = await fetch('http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token', config);
+            const token = response._bodyText.slice(1, -1);
 
             if (response.status >= 200 && response.status < 300) {
                 this.state.isLoginRequestSuccessful = true;
 
-                this.setStorage()
+                this.setStorage(token)
                     .then(this.redirect());
             }
         } catch (error) {
